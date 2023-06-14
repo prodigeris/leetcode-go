@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func Test_countBits(t *testing.T) {
+func Test_containsDuplicate(t *testing.T) {
 	type args struct {
 		n []int
 	}
