@@ -3,15 +3,20 @@ package _9_group_anagrams
 func groupAnagrams(strs []string) [][]string {
 	r := make([][]string, 0)
 	k := 0
+	used := make(map[string]bool)
 	for i, str := range strs {
+		if used[str] {
+			continue
+		}
 		r = append(r, []string{str})
+		used[str] = true
 		for j, str2 := range strs {
 			if i == j {
 				continue
 			}
 			if isAnagram(str, str2) {
 				r[k] = append(r[k], str2)
-				strs = append(strs[:j], strs[j+1:]...)
+				used[str2] = true
 			}
 		}
 		k++

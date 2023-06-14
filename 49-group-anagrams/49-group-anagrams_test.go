@@ -48,7 +48,7 @@ func Test_groupAnagrams(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 			if got := groupAnagrams(tt.args.s); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("groupAnagrams() = %v, want %v", got, tt.want)
+				t.Errorf("groupAnagrams(), got %v, want %v", got, tt.want)
 			}
 		})
 	}
