@@ -1,7 +1,6 @@
 package _5_three_sum
 
 import (
-	"fmt"
 	"sort"
 )
 
@@ -9,28 +8,36 @@ func threeSum(nums []int) [][]int {
 	sort.Ints(nums)
 	r := make([][]int, 0)
 	s := make(map[int]bool)
-	u := make(map[string]bool)
 
-	for i, v := range nums {
-		if _, ok := s[v]; ok {
+	for i := 0; i < len(nums); i++ {
+		v1 := nums[i]
+		if _, ok := s[v1]; ok {
 			continue
 		}
-		if v > 0 {
+		if v1 > 0 {
 			break
 		}
-		s[v] = true
+		s[v1] = true
 
-		for j := i + 1; j < len(nums)-1; j++ {
-			for k := j + 1; k < len(nums); k++ {
-				key := fmt.Sprintf("%d%d%d", v, nums[j], nums[k])
-				if v+nums[j]+nums[k] > 0 {
-					break
-				}
-				if _, exists := u[key]; !exists && v+nums[j]+nums[k] == 0 {
-					r = append(r, []int{v, nums[j], nums[k]})
-					u[key] = true
-					break
-				}
+		j, k := i+1, len(nums)-1
+		for j < k {
+			v2, v3 := nums[j], nums[k]
+
+			if k < len(nums)-1 && nums[k] == nums[k+1] {
+				k--
+				continue
+			}
+			if v2+v3 > -v1 {
+				k--
+			}
+			if v2+v3 < -v1 {
+				j++
+			}
+
+			if v2+v3 == -v1 {
+				r = append(r, []int{v1, v2, v3})
+				j++
+				k--
 			}
 		}
 	}
