@@ -22,17 +22,15 @@ func threeSum(nums []int) [][]int {
 				k--
 				continue
 			}
-			if nums[j]+nums[k] == -nums[i] {
+			s := nums[i] + nums[j] + nums[k]
+			if s > 0 {
+				k--
+			} else if s < 0 {
+				j++
+			} else {
 				r = append(r, []int{nums[i], nums[j], nums[k]})
 				j++
 				k--
-			}
-
-			if nums[j]+nums[k] > -nums[i] {
-				k--
-			}
-			if nums[j]+nums[k] < -nums[i] {
-				j++
 			}
 		}
 	}
