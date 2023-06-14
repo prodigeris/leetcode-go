@@ -24,7 +24,7 @@ func Test_twoSums(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 			if got := twoSum(tt.args.n, tt.args.t); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("countBits() = %v, want %v", got, tt.want)
+				t.Errorf("twoSums() = %v, want %v", got, tt.want)
 			}
 		})
 	}
