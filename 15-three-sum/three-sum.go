@@ -7,37 +7,32 @@ import (
 func threeSum(nums []int) [][]int {
 	sort.Ints(nums)
 	r := make([][]int, 0)
-	s := make(map[int]bool)
 
 	for i := 0; i < len(nums); i++ {
-		v1 := nums[i]
-		if _, ok := s[v1]; ok {
+		if i > 0 && nums[i] == nums[i-1] {
 			continue
 		}
-		if v1 > 0 {
+		if nums[i] > 0 {
 			break
 		}
-		s[v1] = true
 
 		j, k := i+1, len(nums)-1
 		for j < k {
-			v2, v3 := nums[j], nums[k]
-
 			if k < len(nums)-1 && nums[k] == nums[k+1] {
 				k--
 				continue
 			}
-			if v2+v3 > -v1 {
-				k--
-			}
-			if v2+v3 < -v1 {
+			if nums[j]+nums[k] == -nums[i] {
+				r = append(r, []int{nums[i], nums[j], nums[k]})
 				j++
+				k--
 			}
 
-			if v2+v3 == -v1 {
-				r = append(r, []int{v1, v2, v3})
-				j++
+			if nums[j]+nums[k] > -nums[i] {
 				k--
+			}
+			if nums[j]+nums[k] < -nums[i] {
+				j++
 			}
 		}
 	}
