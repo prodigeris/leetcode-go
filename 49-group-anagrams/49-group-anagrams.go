@@ -25,7 +25,7 @@ func groupAnagrams(strs []string) [][]string {
 }
 
 func isAnagram(str string, str2 string) bool {
-	if len(str) == 0 {
+	if len(str) == 0 && len(str2) == 0 {
 		return true
 	}
 	if len(str) != len(str2) {

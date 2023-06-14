@@ -18,6 +18,7 @@ func Test_isAnagram(t *testing.T) {
 		{"Example 1", args{"alus", "sula"}, true},
 		{"Example 2", args{"arnas", "varnas"}, false},
 		{"Example 3", args{"bat", "tab"}, true},
+		{"Example 4", args{"", "b"}, false},
 	}
 	for _, tt := range tests {
 		tt := tt
@@ -42,6 +43,7 @@ func Test_groupAnagrams(t *testing.T) {
 		{"Example 1", args{[]string{"eat", "tea", "tan", "ate", "nat", "bat"}}, [][]string{{"bat"}, {"nat", "tan"}, {"ate", "eat", "tea"}}},
 		{"Example 2", args{[]string{""}}, [][]string{{""}}},
 		{"Example 3", args{[]string{"a"}}, [][]string{{"a"}}},
+		{"Example 4", args{[]string{"", "b"}}, [][]string{{""}, {"b"}}},
 	}
 	for _, tt := range tests {
 		tt := tt
