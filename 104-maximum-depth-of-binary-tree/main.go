@@ -138,9 +138,9 @@ func maxDepthRecursive(root *TreeNode) int {
 	}
 	l := maxDepthRecursive(root.Left)
 	r := maxDepthRecursive(root.Right)
-	max := r
+	m := r
 	if l > r {
-		max = l
+		m = l
 	}
-	return 1 + max
+	return 1 + m
 }
