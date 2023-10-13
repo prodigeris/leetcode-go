@@ -38,11 +38,41 @@ func (q *Queue) dequeue() *QueueNode {
 	return r
 }
 
+type Stack struct {
+	node  *TreeNode
+	depth int
+}
+
+/*
+*
+Iterative DFS solution with slice
+*/
+func maxDepth(root *TreeNode) int {
+	s := []Stack{
+		{root, 1},
+	}
+	levels := 0
+	for len(s) > 0 {
+		n := s[0]
+		if levels < n.depth {
+			levels = n.depth
+		}
+		s = s[1:]
+		if n.node.Left != nil {
+			s = append([]Stack{{node: n.node.Left, depth: n.depth + 1}}, s...)
+		}
+		if n.node.Right != nil {
+			s = append([]Stack{{node: n.node.Right, depth: n.depth + 1}}, s...)
+		}
+	}
+	return levels
+}
+
 /*
 *
 Iterative BFS solution with slice
 */
-func maxDepth(root *TreeNode) int {
+func maxDepthWithSlice(root *TreeNode) int {
 	q := []*TreeNode{root}
 	levels := 0
 	for len(q) > 0 {
