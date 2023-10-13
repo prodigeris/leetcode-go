@@ -48,6 +48,9 @@ type Stack struct {
 Iterative DFS solution with slice
 */
 func maxDepth(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
 	s := []Stack{
 		{root, 1},
 	}
@@ -58,10 +61,10 @@ func maxDepth(root *TreeNode) int {
 			levels = n.depth
 		}
 		s = s[1:]
-		if n.node.Left != nil {
+		if n.node != nil && n.node.Left != nil {
 			s = append([]Stack{{node: n.node.Left, depth: n.depth + 1}}, s...)
 		}
-		if n.node.Right != nil {
+		if n.node != nil && n.node.Right != nil {
 			s = append([]Stack{{node: n.node.Right, depth: n.depth + 1}}, s...)
 		}
 	}
