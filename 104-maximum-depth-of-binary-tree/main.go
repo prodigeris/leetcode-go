@@ -40,9 +40,34 @@ func (q *Queue) dequeue() *QueueNode {
 
 /*
 *
-Iterative BFS solution
+Iterative BFS solution with slice
 */
 func maxDepth(root *TreeNode) int {
+	q := []*TreeNode{root}
+	levels := 0
+	for len(q) > 0 {
+		levels++
+		elc := len(q)
+		for i := 0; i < elc; i++ {
+			node := q[0]
+			q = q[1:]
+
+			if node.Left != nil {
+				q = append(q, node.Left)
+			}
+			if node.Right != nil {
+				q = append(q, node.Right)
+			}
+		}
+	}
+	return levels
+}
+
+/*
+*
+Iterative BFS solution with custom struct
+*/
+func maxDepthCustomStruct(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
@@ -68,7 +93,9 @@ func maxDepth(root *TreeNode) int {
 			nodesAtCurrentLevel = nodesAtNextLevel
 			nodesAtNextLevel = 0
 		}
+
 	}
+
 	return level
 }
 
