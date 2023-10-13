@@ -11,19 +11,14 @@ type TreeNode struct {
 }
 
 func maxDepth(root *TreeNode) int {
-	return goDeeper(root, 0)
-}
-
-func goDeeper(root *TreeNode, level int) int {
 	if root == nil {
-		return level
+		return 0
 	}
-
-	level++
-	l := goDeeper(root.Left, level)
-	r := goDeeper(root.Right, level)
+	l := maxDepth(root.Left)
+	r := maxDepth(root.Right)
+	max := r
 	if l > r {
-		return l
+		max = l
 	}
-	return r
+	return 1 + max
 }
