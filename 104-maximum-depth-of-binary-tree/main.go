@@ -76,6 +76,9 @@ func maxDepth(root *TreeNode) int {
 Iterative BFS solution with slice
 */
 func maxDepthWithSlice(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
 	q := []*TreeNode{root}
 	levels := 0
 	for len(q) > 0 {
@@ -85,10 +88,10 @@ func maxDepthWithSlice(root *TreeNode) int {
 			node := q[0]
 			q = q[1:]
 
-			if node.Left != nil {
+			if node != nil && node.Left != nil {
 				q = append(q, node.Left)
 			}
-			if node.Right != nil {
+			if node != nil && node.Right != nil {
 				q = append(q, node.Right)
 			}
 		}
