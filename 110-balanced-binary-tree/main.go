@@ -18,7 +18,13 @@ func dfs(root *TreeNode) int {
 	}
 
 	l := dfs(root.Left)
+	if l == -1 {
+		return -1
+	}
 	r := dfs(root.Right)
+	if r == -1 {
+		return -1
+	}
 
 	if math.Abs(float64(l-r)) < 2 {
 		return -1
