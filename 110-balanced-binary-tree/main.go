@@ -9,22 +9,19 @@ type TreeNode struct {
 }
 
 func isBalanced(root *TreeNode) bool {
-	stillBalanced := true
-	dfs(root, &stillBalanced)
-	return stillBalanced
+	return dfs(root) != -1
 }
 
-func dfs(root *TreeNode, stillBalanced *bool) int {
+func dfs(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
 
-	l := dfs(root.Left, stillBalanced)
-	r := dfs(root.Right, stillBalanced)
+	l := dfs(root.Left)
+	r := dfs(root.Right)
 
-	isBalanced := math.Abs(float64(l-r)) < 2
-	if !isBalanced {
-		*stillBalanced = false
+	if math.Abs(float64(l-r)) < 2 {
+		return -1
 	}
 
 	return 1 + maximum(l, r)
