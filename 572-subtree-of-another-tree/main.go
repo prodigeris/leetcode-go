@@ -18,10 +18,7 @@ func isSame(root *TreeNode, subRoot *TreeNode) bool {
 	if root == nil && subRoot == nil {
 		return true
 	}
-	if root == nil || subRoot == nil {
-		return false
-	}
-	if root.Val != subRoot.Val {
+	if root == nil || subRoot == nil || root.Val != subRoot.Val {
 		return false
 	}
 
