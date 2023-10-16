@@ -11,12 +11,7 @@ func isSubtree(root *TreeNode, subRoot *TreeNode) bool {
 		return false
 	}
 
-	result := isSame(root, subRoot)
-	if result {
-		return true
-	}
-
-	return isSubtree(root.Left, subRoot) || isSubtree(root.Right, subRoot)
+	return isSame(root, subRoot) || isSubtree(root.Left, subRoot) || isSubtree(root.Right, subRoot)
 }
 
 func isSame(root *TreeNode, subRoot *TreeNode) bool {
